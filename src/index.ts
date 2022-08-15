@@ -1,4 +1,6 @@
-export { default } from './classes/QbittorrentClient'
-export { default as QbittorrentClient } from './classes/QbittorrentClient'
-export * from './classes/QbittorrentClient'
-export * from './utils/QbittorrentClientError'
+export { default } from './classes/QBittorrentClient'
+export { default as QBittorrentClient } from './classes/QBittorrentClient'
+export * from './classes/QBittorrentClient'
+
+export { default as QBittorrentClientError } from './utils/QBittorrentClientError'
+export * from './utils/QBittorrentClientError'

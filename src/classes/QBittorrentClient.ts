@@ -7,21 +7,21 @@ import {
   TorrentInfo,
 } from '../types/QBittorrentTorrentsMethods'
 import axios, { AxiosResponse } from 'axios'
-import QbittorrentClientError, { ErrorType } from '../utils/QbittorrentClientError'
+import QBittorrentClientError, { ErrorType } from '../utils/QBittorrentClientError'
 import { QBittorrentAppPreferences } from '../types/QBittorrentAppMethods'
 import { QBittorrentSyncTorrentPeers, QBittorrentTorrentPeers } from '../types/QBittorrentSyncMethods'
 import { QBittorrentTransferInfo } from '../types/QBittorrentTransferMethods'
 import FormData from 'form-data'
 
-export interface QbittorrentClientOptions {
+export interface QBittorrentClientOptions {
   baseUrl: string
 }
 
-export default class QbittorrentClient {
+export default class QBittorrentClient {
   httpClient = axios.create()
   sessionCookie?: string
 
-  constructor(readonly options: QbittorrentClientOptions) {
+  constructor(readonly options: QBittorrentClientOptions) {
     this.httpClient.defaults.baseURL = this.baseUrl
   }
 
@@ -48,12 +48,12 @@ export default class QbittorrentClient {
     })
       .then(async response => {
           if (response.status === 403) {
-            throw new QbittorrentClientError('Too many failed attempts, your IP is banned', {
+            throw new QBittorrentClientError('Too many failed attempts, your IP is banned', {
               type: ErrorType.IP_BANNED,
             })
           }
           if (response.data === 'Fails.') {
-            throw new QbittorrentClientError('Invalid credentials', {
+            throw new QBittorrentClientError('Invalid credentials', {
               type: ErrorType.INVALID_CREDENTIALS,
             })
           }
@@ -69,7 +69,7 @@ export default class QbittorrentClient {
         },
         error => {
           if (error.response.status === 403) {
-            throw new QbittorrentClientError('Too many failed attempts, your IP is banned', {
+            throw new QBittorrentClientError('Too many failed attempts, your IP is banned', {
               type: ErrorType.IP_BANNED,
             })
           }

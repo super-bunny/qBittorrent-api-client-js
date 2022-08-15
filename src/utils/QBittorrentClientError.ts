@@ -3,15 +3,15 @@ export enum ErrorType {
   INVALID_CREDENTIALS = 'INVALID_CREDENTIALS',
 }
 
-export interface Context {
+export interface ErrorContext {
   type?: ErrorType
 }
 
-export default class QbittorrentClientError extends Error {
-  readonly name = 'QbittorrentClientError'
+export default class QBittorrentClientError extends Error {
+  readonly name = 'QBittorrentClientError'
   readonly type?: ErrorType
 
-  constructor(message?: string, context?: Context) {
+  constructor(message?: string, context?: ErrorContext) {
     super(message ?? 'qBittorrent client error')
     this.type = context?.type
   }
