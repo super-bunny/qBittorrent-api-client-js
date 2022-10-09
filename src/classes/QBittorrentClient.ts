@@ -373,8 +373,14 @@ export default class QBittorrentClient {
       .post(`torrents/add`, form, {
         headers,
       })
-      .then(() => {
-        // returns nothing
+      .then(response => {
+        // Check if operation fail.
+        // No more detail can be given in response due to the non verbosity of qBittorrent api error.
+        if (response.data === 'Fails.') {
+          throw new QBittorrentClientError('Can not add torrent file', {
+            type: ErrorType.OPERATION_FAILED,
+          })
+        }
       })
   }
 
