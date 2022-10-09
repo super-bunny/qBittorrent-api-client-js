@@ -1,6 +1,7 @@
 export enum ErrorType {
   IP_BANNED = 'IP_BANNED',
   INVALID_CREDENTIALS = 'INVALID_CREDENTIALS',
+  OPERATION_FAILED = 'OPERATION_FAILED',
 }
 
 export interface ErrorContext {
