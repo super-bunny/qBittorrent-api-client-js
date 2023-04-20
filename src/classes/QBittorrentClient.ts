@@ -41,9 +41,14 @@ export default class QBittorrentClient {
   }
 
   async login(username?: string, password?: string): Promise<string | undefined> {
+    const params = new URLSearchParams()
+    if (username) params.append('username', username)
+    if (password) params.append('password', password)
+
     return this.httpClient('auth/login', {
-      method: 'GET',
-      params: { username, password },
+      method: 'POST',
+      data: params,
+
       withCredentials: true,
     })
       .then(async response => {
