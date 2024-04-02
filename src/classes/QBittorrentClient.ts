@@ -5,7 +5,7 @@ import {
   QBittorrentTorrentsAddOptions,
   QBittorrentTorrentTrackers,
   TorrentInfo,
-} from '../types/QBittorrentTorrentsMethods'
+} from '../types/QBittorrentTorrentsMethods.js'
 import axios, { AxiosResponse } from 'axios'
 import QBittorrentClientError, { ErrorType } from '../utils/QBittorrentClientError'
 import { QBittorrentAppPreferences } from '../types/QBittorrentAppMethods'
