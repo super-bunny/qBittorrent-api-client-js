@@ -8,9 +8,22 @@ This library provides a fully typed API client for qBittorrent.
 
 Web-UI must be enabled in qBittorrent to be able to use the api with this library.
 
+## Installation
+
+### NPM
+```shell
+npm install qbittorrent-api-client
+```
+### Yarn
+```shell
+yarn add qbittorrent-api-client
+```
+
 ## Example
 
 ```js
+import QBittorrentClient from 'qbittorrent-api-client'
+
 const qBittorrentClient = new QBittorrentClient({ baseUrl: 'http://localhost:8080' });
 
 // This will save the session cookie in the client
