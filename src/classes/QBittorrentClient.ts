@@ -23,6 +23,14 @@ export default class QBittorrentClient {
 
   constructor(readonly options: QBittorrentClientOptions) {
     this.httpClient.defaults.baseURL = this.baseUrl
+    this.httpClient.interceptors.response.use(response => response, error => {
+      if (error.response.status === 403) {
+        throw new QBittorrentClientError('Authentication needed', {
+          type: ErrorType.FORBIDDEN,
+        })
+      }
+      throw error
+    })
   }
 
   protected get baseUrl(): string {
