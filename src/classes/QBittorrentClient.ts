@@ -85,7 +85,7 @@ export default class QBittorrentClient {
 
   async logout(): Promise<void> {
     await this.httpClient('/auth/logout', {
-      method: 'GET',
+      method: 'POST',
       withCredentials: true,
     })
   }
