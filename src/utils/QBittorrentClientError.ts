@@ -5,7 +5,7 @@ export enum ErrorType {
   OPERATION_FAILED = 'OPERATION_FAILED',
 }
 
-export interface ErrorContext {
+export interface ErrorContext extends Pick<Error, 'cause'> {
   type?: ErrorType
 }
 
@@ -14,7 +14,7 @@ export default class QBittorrentClientError extends Error {
   readonly type?: ErrorType
 
   constructor(message?: string, context?: ErrorContext) {
-    super(message ?? 'qBittorrent client error')
+    super(message ?? 'qBittorrent client error', { cause: context?.cause })
     this.type = context?.type
   }
 }

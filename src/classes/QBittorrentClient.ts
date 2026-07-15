@@ -27,6 +27,7 @@ export default class QBittorrentClient {
       if (error instanceof AxiosError && error.response?.status === 403) {
         throw new QBittorrentClientError('Authentication needed', {
           type: ErrorType.FORBIDDEN,
+          cause: error,
         })
       }
       throw error
