@@ -6,7 +6,7 @@ import {
   QBittorrentTorrentTrackers,
   TorrentInfo,
 } from '../types/QBittorrentTorrentsMethods.js'
-import axios, { AxiosError, AxiosResponse } from 'axios'
+import axios, { AxiosResponse } from 'axios'
 import QBittorrentClientError, { ErrorType } from '../utils/QBittorrentClientError'
 import { QBittorrentAppPreferences } from '../types/QBittorrentAppMethods'
 import { QBittorrentSyncTorrentPeers, QBittorrentTorrentPeers } from '../types/QBittorrentSyncMethods'
@@ -24,7 +24,7 @@ export default class QBittorrentClient {
   constructor(readonly options: QBittorrentClientOptions) {
     this.httpClient.defaults.baseURL = this.baseUrl
     this.httpClient.interceptors.response.use(response => response, error => {
-      if (error instanceof AxiosError && error.response?.status === 403) {
+      if (error instanceof axios.AxiosError && error.response?.status === 403) {
         throw new QBittorrentClientError('Authentication needed', {
           type: ErrorType.FORBIDDEN,
           cause: error,
